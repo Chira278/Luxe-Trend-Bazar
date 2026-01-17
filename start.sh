@@ -1,3 +1,4 @@
 #!/bin/bash
-cd /opt/render/project
+set -e
+echo "Starting LUXE Backend Server..."
 node server.js
