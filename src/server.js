@@ -32,6 +32,10 @@ app.use(morgan(NODE_ENV === 'production' ? 'combined' : 'dev')); // Logging
 app.use('/api/invoices', express.static(path.join(__dirname, 'invoices')));
 
 // ===== HEALTH CHECK =====
+app.get('/', (req, res) => {
+  res.send('Backend is running 🚀');
+});
+
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'OK',
