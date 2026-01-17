@@ -6,6 +6,17 @@ const compression = require('compression');
 const path = require('path');
 require('dotenv').config();
 
+// Check environment variables
+const requiredEnvVars = ['MONGODB_URI', 'JWT_SECRET'];
+const missingEnvVars = requiredEnvVars.filter(envVar => !process.env[envVar]);
+
+if (missingEnvVars.length > 0) {
+  console.warn('⚠️  Missing environment variables:', missingEnvVars.join(', '));
+  console.warn('Server will start but some features may not work.');
+  console.warn('Please set these in your deployment platform:');
+  missingEnvVars.forEach(v => console.warn(`  - ${v}`));
+}
+
 const app = express();
 
 // Middleware
