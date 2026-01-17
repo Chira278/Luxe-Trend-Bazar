@@ -7,7 +7,6 @@ const path = require('path');
 require('dotenv').config();
 
 // ===== ENVIRONMENT VARIABLES =====
-const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Warn about missing environment variables
@@ -75,15 +74,8 @@ app.use((err, req, res, next) => {
 });
 
 // ===== SERVER START =====
+const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-  console.log(`
-╔══════════════════════════════════════════════════════╗
-║         🚀 LUXE Backend Server Started 🚀           ║
-╠══════════════════════════════════════════════════════╣
-║ Port: ${PORT}
-║ Environment: ${NODE_ENV}
-║ Time: ${new Date().toLocaleString()}
-║ Health Check: http://localhost:${PORT}/api/health
-╚══════════════════════════════════════════════════════╝
-  `);
+  console.log(`Server running on port ${PORT}`);
 });
