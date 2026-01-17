@@ -1,12 +1,18 @@
 #!/usr/bin/env node
-// Wrapper to handle both old and new directory structures
+
+/**
+ * LUXE Backend - Wrapper Entry Point
+ * Handles both old and new directory structures
+ * Delegates to index.js for server startup
+ */
+
 try {
-  require('./src/server.js');
+  require('./index');
 } catch (err) {
   if (err.code === 'MODULE_NOT_FOUND') {
-    // Fallback if src/server.js doesn't exist
-    console.log('src/server.js not found, checking root...');
-    require('./server.js');
+    console.error('❌ Failed to load server');
+    console.error('Error:', err.message);
+    process.exit(1);
   } else {
     throw err;
   }
