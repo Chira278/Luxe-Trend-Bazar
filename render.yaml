@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: luxe-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        fromDatabase:
+          name: luxe-mongodb
+          property: connectionString
+      - key: JWT_SECRET
+        sync: false
+
